@@ -1,0 +1,229 @@
+/*SuperClass & override*/
+main() {
+  var dog1 = new dog();
+  print(dog1.xyz(123));
+  var animal1 = new animal();
+  print(animal1.xyz(1423));
+}
+abstract class Rules{
+  String name = "foo";
+  int xyz(int val){
+    return val;
+  }
+}
+class animal extends Rules{
+  String name = "123";
+
+}
+
+class dog extends animal{
+  String dogName="23";
+  @override
+  int xyz(int supVal){
+    return super.xyz(supVal);
+  }
+}
+/* Class implementing*/
+main() {
+  var test = new FooBar();
+  print(test.name);
+}
+ class MainClass{
+  String name = "";
+ }
+ class FooBar implements MainClass{
+  String name = "Foo";
+ }
+/*implement multiple interfaces*/
+main() {
+  var test = new FooBar();
+  print(test.name);
+}
+ class MainClass{
+  String name = "";
+  int age ;
+ }
+ class dog{
+  String val;
+  void dogname(){}
+ }
+ class FooBar implements MainClass,dog{
+  var val = "ased";
+  String name = "Foo";
+  int age = 25;
+  String dogname(){
+    return "hi";
+  }
+
+ }
+/*getter*/
+main() {
+  FooBar test = new FooBar(2);
+  print(test.names);
+}
+
+ class FooBar{
+  int name;
+  FooBar(this.name);
+
+  String get names{
+    if(name == 1)
+      return "Hi";
+    else
+      return "Bye";
+  }
+  }
+
+/*setter*/
+main() {
+  FooBar test = new FooBar();
+  test.names = 1000; //setter
+  print(test.names); //getter
+}
+
+ class FooBar{
+  int name;
+
+
+  int get names{
+    return name;
+  }
+  void set names(int value){
+    this.name = value;
+  }
+ }
+/*List*/
+main() {
+ List test = new List(3);
+ test[0] = "foo";
+ test[1] = "bar";
+ print(test.length);
+ print(test[2]);
+ }
+/*Map*/
+main() {
+  Map names = new Map();
+  //names["name"] = "foo";
+  // names["age"]  = "bar";
+  //names["1"]  =   12;
+  names = {"age" : 12 , "name": "ahmed"};
+  names.addAll({"address": 200});
+  names.forEach((key,value){
+     print('$key : $value');
+  });
+      print(names.values.toList());
+      names.clear();
+      print(names.length);
+ }
+/*set hastset list*/
+import 'package:MSP/MSP.dart'as test;
+main() {
+ List data =  new List();
+ data.add('test2');
+ data.add('test');
+ data.add('test1');
+
+ Set setData = new Set();
+ setData.add(1);
+ setData.add(2);
+ setData.add(3);
+ setData.add(4);
+ print(data);
+ print(setData);
+
+ HashSet numbers = new HashSet();
+ numbers.add(10);
+ numbers.add(20);
+ numbers.add(40);
+ numbers.add(30);
+ print(numbers);
+ }
+/**/
+main() {
+Map mapdata = new Map<dynamic,bool>();
+mapdata['xyz'] = true;
+print(mapdata);
+
+List listData = new List<String>();
+listData.add('foo');
+print(listData);
+
+HashMap hashData = new HashMap<String,dynamic>();
+hashData['test'] = 'dog';
+print(hashData);
+
+Set setData = new Set<String>();
+setData.add('hi');
+print(setData);
+
+HashSet hashSetData = new HashSet<bool>();
+hashSetData.add(true);
+print(hashSetData);
+ }
+/*Linked hash  Map*/
+main() {
+ LinkedHashMap Linked = new LinkedHashMap();
+ Linked.addAll({'foo':'data'});
+ Linked.addAll({'bar':'data2'});
+ Linked.addAll({'xyz':'datae'});
+ print(Linked.runtimeType);
+}
+/*SplayTreeMap*/
+SplayTreeMap splayData = new SplayTreeMap();
+splayData.addAll({'foo':'data1'});
+splayData.addAll({'bar':'data2'});
+print(splayData);
+/*factory*/
+main() {
+Dog dog = new Dog('Rex 21');
+print(dog.age);
+}
+class Dog{
+  final String name;
+  final String age ;
+  factory Dog(String name){
+    var doginfo = name.split(' ');
+    return Dog._(doginfo[0],doginfo[1]);
+  }
+  Dog._(this.name,this.age);
+}
+/*listener*/
+import 'dart:async';
+main() async{
+  var streamController = StreamController();
+  streamController.stream.listen((text){
+    print(text);
+  });
+  streamController.sink.add('hello dart');
+  streamController.close();
+  print("hello world ! ");
+}
+/*Isolate*/
+import 'dart:async';
+import 'dart:io';
+import 'dart:isolate';
+Isolate isolate;
+void begin() async{
+  ReceivePort receivePort = ReceivePort();
+  isolate = await Isolate.spawn(runbegin, receivePort.sendPort);
+  receivePort.listen((data){
+  stdout.write(data);
+  });
+}
+void runbegin(SendPort sendPort){
+  String message = "hello";
+  sendPort.send(message);
+}
+main() async{
+ await begin();
+}
+/*Isolate-Part2*/
+/***********************/
+/*Crazy Loop!*/
+main() {
+  List data = ['for','bar','xyz'];
+  for(String result in data){
+    print(result);
+  }
+}
+
