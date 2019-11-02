@@ -1,0 +1,42 @@
+import 'dart:async' ;
+import 'dart:io';
+main()  {
+ String CustomerName,addCream,addChocolate;
+ int numOfCups;
+ double totalPrice,totalWhippedCream = 0,totalChocolate = 0;
+ print('Please Enter Your Name:');
+ CustomerName = stdin.readLineSync();
+ print('Please Enter Number of cups:');
+ numOfCups = int.parse(stdin.readLineSync());
+
+totalPrice = (numOfCups*5).toDouble();
+ print('Add Whipped Cream?');
+ addCream =   stdin.readLineSync();
+
+ if(addCream.startsWith('Y')){
+   totalWhippedCream = numOfCups * 2.25;
+   totalPrice += totalWhippedCream;
+ }
+ print('Add Chocolate?');
+ addChocolate =  stdin.readLineSync();
+ if(addChocolate.startsWith('Y')){
+   totalChocolate = numOfCups * 2.5;
+   totalPrice += totalChocolate;
+ }
+ print('Name: $CustomerName \n ------------------------------------- ');
+ print('Quantity: $numOfCups cup of coffee.');
+ if(totalChocolate == 0 )
+  print('Add Whipped Cream?>> No');
+ else print('Add Whipped Cream?>> Yes');
+ 
+ if(totalWhippedCream ==0)
+   print('Add Chocolate?>> NO');
+ else print('Add Chocolate?>> Yes');
+ 
+ print('-------------------------------------');
+ print('Total Whipped Cream Price:\$$totalWhippedCream');
+ print('Total Chocolate Price:\$$totalChocolate');
+ print('Total Price:\$$totalPrice');
+ print('-------------------------------------');
+ print('Thank you,Please Come again!');
+}
